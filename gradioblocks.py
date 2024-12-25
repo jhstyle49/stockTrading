@@ -1,16 +1,15 @@
 import gradio as gr
 
-def update(name):
-    return f"Welcome to Gradio, {name}"
+def greet(name, intensity):
+    return "Hello, " + name + "!" * int(intensity)
 
-with gr.Blocks() as demo:
-    gr.Markdown("Start typing below and then click ** Run** to see the output.")
+# iface = gr.Interface(fn=greet, inputs="text", outputs="text")
+# iface.launch(share=True)
 
-    with gr.Row():
-        inp = gr.Textbox(placeholder="What is your name?")
-        out = gr.Textbox()
-
-    btn = gr.Button("Run")
-    btn.click(fn=update, inputs=inp, outputs=out)
+demo = gr.Interface(
+    fn=greet,
+    inputs=["text", "slider"],
+    outputs=["text"],
+)
 
 demo.launch()
