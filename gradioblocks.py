@@ -1,8 +1,13 @@
+import os, glob
+
 import yfinance as yf 
 import pandas as pd
 import numpy as np
 
 import gradio as gr
+
+print("Current File Path:", __file__)
+print("Current Working Directory:", os.getcwd())
 
 ticker_usd = ['^GSPC', '^SP500TR']
 result=yf.download(ticker_usd, start='1900-01-01')
@@ -19,6 +24,8 @@ result = result[['Date']+remain_cols]
 result = result.dropna()
 result_mon = result.copy()
 result_year = result.copy()
+
+
 
 def greet(name, intensity):
     return "Hello, " + name + "!" * int(intensity)
